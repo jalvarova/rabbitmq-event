@@ -1,0 +1,46 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        product:
+          destination: local.product-exchange
+          group: create_product_q
+          consumer:
+            max-attempts: 3
+            acknowledge-mode: AUTO
+            bind-queue: false
+            #dlx/dlq setup
+            #auto-bind-dlq: true
+            #dlq-ttl: 5000
+            #dlq-dead-letter-exchange:
+      #        output:
+      #          destination: create_product_q
+      #          binder: local.example.product.create
+---
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: password
+---
+management:
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        prometheus: /metrics
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+          - prometheus
+        exclude:
+---
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/product-db
+#      username: mongo
+#      password: 12345
