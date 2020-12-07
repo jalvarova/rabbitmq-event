@@ -14,6 +14,8 @@ import org.walavo.consumer.model.repositories.ProductRepository;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Slf4j
 @Component
@@ -30,22 +32,24 @@ public class ProductEventListener {
         log.info("Event Init");
         //validateAttempt(getCountAttempt(death));
         repository.findBySkuCode(productDto.getSkuCode())
-                .switchIfEmpty(saveProductBySKu(productDto))
+                .switchIfEmpty(Mono.just(saveProductBySKu(productDto)))
                 .map(productEntity -> productEntity)
                 .doOnSubscribe(success -> log.info("Success Event Consumer " + success))
                 .doOnError(exception -> log.error("Error occurred while consuming message ", exception))
                 .block();
 
         log.info("Finished Event");
-
     }
 
-    private Mono<ProductDocument> saveProductBySKu(ProductDto dto) {
+    private ProductDocument saveProductBySKu(ProductDto dto) {
 
-        return Mono.just(dto)
+        return Stream.of(dto)
                 .map(ProductMapper.eventToDocument)
                 //.subscribeOn(Schedulers.boundedElastic())
-                .doOnNext(s -> repository.save(s))
-                .log("Success save product");
+                .map(s -> repository.save(s).block())
+                .filter(Objects::nonNull)
+                .peek(productDocument -> log.info("Success save product :" + productDocument.getProductCode()))
+                .findAny()
+                .orElseGet(ProductDocument::new);
     }
 }

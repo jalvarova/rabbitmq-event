@@ -90,14 +90,21 @@ spring:
 
 
 
-### Mongo Operations
+### Install Mongo Cli
 
 ```shell
 sudo apt install mongodb-clients -y
 ```
 
+### Mongo Operation commands
 
 
+```mongo
+mongo --host localhost:27017
+show dbs
+use product-db
+db.products.find({})
+```
 
 #References
 [Started RabbitMQ](https://spring.io/guides/gs/messaging-rabbitmq/)
