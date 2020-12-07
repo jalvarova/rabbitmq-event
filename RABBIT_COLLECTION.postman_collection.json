@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "de67e2bb-f741-4ede-a259-417ab48f4de5",
+		"name": "RABBIT_COLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET_ALL_PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"34015\"\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE_PRODUCT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productCode\": \"OE-94100\",\n    \"skuCode\": \"1712732\",\n    \"productType\": \"ST\",\n    \"description\": \"CAMPANA CONCORDE 60 IX BOSCH\",\n    \"price\": 509.0,\n    \"weight\": 1.0,\n    \"width\": 1.0,\n    \"length\": 1.0,\n    \"height\": 1.0,\n    \"unitMeasurement\": \"UN\",\n    \"hierarchyCode\": \"OE-L0254\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE_EVENT_PRODUCt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productCode\": \"OE-94100\",\n    \"skuCode\": \"1712732\",\n    \"productType\": \"ST\",\n    \"description\": \"CAMPANA CONCORDE 60 IX BOSCH\",\n    \"price\": 509.0,\n    \"weight\": 1.0,\n    \"width\": 1.0,\n    \"length\": 1.0,\n    \"height\": 1.0,\n    \"unitMeasurement\": \"UN\",\n    \"hierarchyCode\": \"OE-L0254\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/v1/product/event",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"event"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPSERT_PRODUCT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productCode\": \"OE-94100\",\n    \"skuCode\": \"34015\",\n    \"productType\": \"ST\",\n    \"description\": \"CAMPANA CONCORDE 60 IX BOSCH\",\n    \"price\": 509.0,\n    \"weight\": 1.0,\n    \"width\": 1.0,\n    \"length\": 1.0,\n    \"height\": 1.0,\n    \"unitMeasurement\": \"UN\",\n    \"hierarchyCode\": \"OE-L0254\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9091/api/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HEALTH",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9091/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
