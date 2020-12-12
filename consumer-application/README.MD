@@ -6,7 +6,7 @@
 
 ```docker
 cd docker
-docker-compode up -d
+docker-compose up -d
 ### Maven Build
 
 ```
